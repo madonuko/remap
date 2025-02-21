@@ -1,49 +1,24 @@
-import NimQml
-import ui/remap_key_seq
+import QtCore/gen_qvariant
+import QtQml/gen_qqmlapplicationengine
+import QtWidgets/[gen_qapplication, gen_qpushbutton, gen_qkeysequenceedit]
 
-# miqt
-import QtWidgets/[gen_qapplication, gen_qpushbutton]
-import strformat
-
-proc mainProc() =
-  var app = newQApplication()
+proc main() =
+  var app = QApplication.create()
   defer:
     app.delete()
 
-  var engine = newQQmlApplicationEngine()
+  var engine = QQmlApplicationEngine.create()
   defer:
     engine.delete()
 
-  var remapKeySeq = newRemapKeySeq()
+  let test = QKeySequenceEdit.create()
   defer:
-    delete remapKeySeq
-  var vRemapKeySeq = newQVariant remapKeySeq
-  defer:
-    delete vRemapKeySeq
-  engine.setRootContextProperty("remapKeySeq", vRemapKeySeq)
+    test.delete()
+  discard
+    engine.rootContext.setProperty("test", QVariant.fromValue(test))
 
   engine.load("qmls/main.qml")
-  app.exec()
-
-proc mainProcMiqt() =
-  let app = gen_qapplication.QApplication.create()
-
-  let btn = QPushButton.create("Hello world!")
-  btn.setFixedWidth(320)
-
-  var counter = 0
-
-  btn.onPressed(
-    proc() =
-      counter += 1
-      btn.setText(&"You have clicked the button {counter} time(s)")
-  )
-
-  btn.show()
-
-  echo gen_qapplication.QApplication.exec()
-
+  discard exec QApplication
 
 when isMainModule:
-  mainProcMiqt()
-
+  main()
