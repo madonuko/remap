@@ -1,0 +1,4 @@
+[submodule "vendor/miqt6"]
+	path = vendor/miqt6
+	url = git@github.com:arnetheduck/nim-miqt-poc.git
+	branch = qt-6.4

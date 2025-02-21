@@ -1,13 +1,13 @@
 # Package
 
-backend       = "c"
 version       = "0.1.0"
-author        = "FyraLabs"
-description   = " ⌨ A keyd GUI frontend for remapping your keys "
+author        = "madonuko"
+description   = "⌨ A keyd GUI frontend for remapping your keys"
 license       = "MIT"
 srcDir        = "src"
 bin           = @["remap_qt"]
 
+backend       = "cpp"
 
 # Dependencies
 
