@@ -7,6 +7,4 @@ ApplicationWindow {
     height: 300
     title: "remap"
     Component.onCompleted: visible = true
-
-    test
 }

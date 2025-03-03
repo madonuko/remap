@@ -1,23 +1,37 @@
+import std/os
+
 import QtCore/gen_qvariant
-import QtQml/gen_qqmlapplicationengine
-import QtWidgets/[gen_qapplication, gen_qpushbutton, gen_qkeysequenceedit]
+# import QtQml/gen_qqmlapplicationengine
+import
+  QtWidgets/[
+    gen_qapplication, gen_qpushbutton, gen_qkeysequenceedit, gen_qtabwidget,
+    gen_qmessagebox,
+  ]
+import sweet
+
+import ui/tab_general
+
+proc checkForKeyd() =
+  if !!findExe "keyd": return
+  var dialog = create QMessageBox
+  dialog.setIcon QMessageBoxIconEnum.Critical
+  dialog.setText "Fatal Error"
+  dialog.setInformativeText "Cannot find `keyd` in `$PATH`. Please install `keyd` and try again."
+  dialog.setWindowTitle "remap"
+  dialog.setStandardButtons QMessageBoxStandardButtonEnum.Close
+  discard exec dialog
+  quit 1
 
 proc main() =
   var app = QApplication.create()
-  defer:
-    app.delete()
+  defer: app.delete()
 
-  var engine = QQmlApplicationEngine.create()
-  defer:
-    engine.delete()
+  checkForKeyd()
 
-  let test = QKeySequenceEdit.create()
-  defer:
-    test.delete()
-  discard
-    engine.rootContext.setProperty("test", QVariant.fromValue(test))
+  var tab = create QTabWidget
+  discard tab.addTab(create_general_tab(), "General")
+  show tab
 
-  engine.load("qmls/main.qml")
   discard exec QApplication
 
 when isMainModule:
