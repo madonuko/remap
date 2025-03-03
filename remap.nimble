@@ -5,7 +5,7 @@ author        = "madonuko"
 description   = "⌨ A keyd GUI frontend for remapping your keys"
 license       = "MIT"
 srcDir        = "src"
-bin           = @["remap_qt"]
+bin           = @["remap"]
 
 backend       = "cpp"
 
