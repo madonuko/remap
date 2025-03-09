@@ -12,5 +12,6 @@ backend       = "cpp"
 # Dependencies
 
 requires "nim >= 2.0.0"
-requires "nimqml >= 0.9.0"
+#requires "nimqml >= 0.9.0"
 requires "sweet"
+requires "npeg"

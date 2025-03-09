@@ -12,10 +12,12 @@ import
 import sweet
 
 import ui/tab_general
+import backend/parse_keyd
 
 proc checkForKeyd() =
   echo "checking for keyd"
-  if !!findExe "keyd": return
+  if !!findExe "keyd":
+    return
   var dialog = create QMessageBox
   dialog.setIcon QMessageBoxIconEnum.Critical
   dialog.setText "Fatal Error"
@@ -28,7 +30,8 @@ proc checkForKeyd() =
 proc main() =
   echo "main"
   var app = QApplication.create()
-  defer: app.delete()
+  defer:
+    app.delete()
 
   checkForKeyd()
 
