@@ -7,3 +7,4 @@ when findExe("mold").len > 0 and defined(linux):
 --path:"../vendor/miqt6/QtNetwork"
 --path:"../vendor/miqt6/QtQml"
 --path:"../vendor/miqt6/QtWidgets"
+--path:"../"

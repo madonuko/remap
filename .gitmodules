@@ -2,3 +2,6 @@
 	path = vendor/miqt6
 	url = git@github.com:arnetheduck/nim-miqt-poc.git
 	branch = qt-6.4
+[submodule "vendor/nimsutils"]
+	path = vendor/nimsutils
+	url = https://github.com/FyraLabs/nimsutils
