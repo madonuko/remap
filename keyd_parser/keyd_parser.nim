@@ -81,14 +81,3 @@ const parser* = peg("KeydConf", conf: KeydConfig):
 
 proc parse*(cfg: cstring): tuple[cfg: KeydConfig, res: MatchResult[char]] {.exportc.} =
   result.res = parser.match($cfg, result.cfg)
-
-# assert parse(
-#   """
-# [ids]
-#
-# *
-#
-# [main]
-# a = b
-# """
-# ).res.ok

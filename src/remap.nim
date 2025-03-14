@@ -42,5 +42,10 @@ proc main() =
   echo "exec QApplication"
   discard exec QApplication
 
+block:
+  let res = parse(cstring readFile("/etc/keyd/default.conf"))
+  assert res.res.ok
+  echo res.cfg
+
 when isMainModule:
   main()

@@ -1,7 +1,7 @@
 import npeg/codegen
 
 type
-  KeydConfig* {.exportc.} = ref object of RootObj
+  KeydConfig* {.exportc.} = object of RootObj
     ids*: KeydConfIds
     main*: KeydConfMain
     aliases*: KeydConfAliases
@@ -15,3 +15,6 @@ type
   KeydConfAliases* {.exportc.} = object of RootObj
 
 proc parse*(cfg: cstring): tuple[cfg: KeydConfig, res: MatchResult[char]] {.importc.}
+
+proc `$`*(cfg: KeydConfig): string =
+  echo "KeydConfig" & $(ids: cfg.ids, main: cfg.main, aliases: cfg.aliases)
